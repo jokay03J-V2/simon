@@ -4,6 +4,13 @@ import "./style.css";
 const BORDERS = document.getElementsByClassName("border");
 const STARTBTN = document.getElementById("start");
 const GAMESTATE = document.getElementById("gameState");
+const BESTSCORE = document.getElementById("score");
+const ACTUELSCORE = document.getElementById("scoreActuelle");
+
+let bestScore = localStorage.getItem("bestScore")
+  ? parseInt(localStorage.getItem("bestScore"))
+  : 0;
+BESTSCORE.innerHTML = bestScore;
 
 let isStarted = false;
 let colorsChoices = [];
@@ -17,6 +24,8 @@ STARTBTN.addEventListener("click", () => {
   if (isStarted) {
     STARTBTN.innerHTML = "démarrer";
     isStarted = !isStarted;
+    removeEventClicks();
+    finishGame();
   } else {
     STARTBTN.innerHTML = "stopper";
     isStarted = !isStarted;
@@ -54,7 +63,18 @@ function startGame() {
 }
 
 function finishGame() {
-  window.location.reload();
+  if (successedChoice > bestScore) {
+    BESTSCORE.innerHTML = successedChoice;
+    localStorage.setItem("bestScore", successedChoice);
+  }
+  successedChoice = 0;
+  currentlyChoice = 0;
+  bestScore = 0;
+  colorsChoices = [];
+  isStarted = false;
+  STARTBTN.innerHTML = "démarrer";
+  ACTUELSCORE.innerHTML = successedChoice;
+  GAMESTATE.innerHTML = "Le jeu n'est pas lancer";
 }
 
 //add checkInputs to each colors
@@ -71,14 +91,13 @@ function addClicks() {
 function removeEventClicks() {
   for (let index = 0; index < BORDERS.length; index++) {
     const border = BORDERS[index];
-    border.addEventListener("click", checkInputs);
+    border.removeEventListener("click", checkInputs);
   }
 }
 
 function checkInputs(ev) {
   //check if current color choice is good
   if (ev.target.id !== colorsChoices[currentlyChoice]) {
-    alert(`Vous avez perdu !\nvous êtes à ${successedChoice} tours`);
     finishGame();
   } else {
     //if user has clicked to all good colors
@@ -87,6 +106,7 @@ function checkInputs(ev) {
       removeEventClicks();
       startGame();
       successedChoice++;
+      ACTUELSCORE.innerHTML = successedChoice;
     } else {
       //else increment global choice order
       currentlyChoice++;
