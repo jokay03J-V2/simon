@@ -1,0 +1,98 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  --border-thinkness: 100px;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 500px;
+  width: 500px;
+}
+
+.border {
+  cursor: pointer;
+  width: 50%;
+  height: 50%;
+  transition: all 0.3s ease;
+}
+
+#blue {
+  border-bottom-right-radius: 99%;
+  border-bottom: var(--border-thinkness) solid blue;
+  border-right: var(--border-thinkness) solid blue;
+}
+
+#blue.active {
+  border-bottom: var(--border-thinkness) solid rgb(174, 174, 255);
+  border-right: var(--border-thinkness) solid rgb(174, 174, 255);
+}
+
+#green {
+  border-top-right-radius: 99%;
+  border-top: var(--border-thinkness) solid green;
+  border-right: var(--border-thinkness) solid green;
+}
+
+#green.active {
+  border-top: var(--border-thinkness) solid rgb(104, 251, 104);
+  border-right: var(--border-thinkness) solid rgb(104, 251, 104);
+}
+
+#red {
+  border-top-left-radius: 99%;
+  border-top: var(--border-thinkness) solid red;
+  border-left: var(--border-thinkness) solid red;
+}
+
+#red.active {
+  border-top: var(--border-thinkness) solid rgb(255, 124, 124);
+  border-left: var(--border-thinkness) solid rgb(255, 124, 124);
+}
+
+#yellow {
+  border-bottom-left-radius: 99%;
+  border-bottom: var(--border-thinkness) solid yellow;
+  border-left: var(--border-thinkness) solid yellow;
+}
+
+#yellow.active {
+  border-bottom: var(--border-thinkness) solid rgb(255, 255, 202);
+  border-left: var(--border-thinkness) solid rgb(255, 255, 202);
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 1vh;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
