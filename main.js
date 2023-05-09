@@ -74,7 +74,7 @@ function finishGame() {
   isStarted = false;
   STARTBTN.innerHTML = "démarrer";
   ACTUELSCORE.innerHTML = successedChoice;
-  GAMESTATE.innerHTML = "Le jeu n'est pas lancer";
+  GAMESTATE.innerHTML = "Vous avez perdu !";
 }
 
 //add checkInputs to each colors
